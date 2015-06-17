@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    {# 各ページごとにタイトルを定義できる #}
+    <title>bottle's Page - {% block title %}{% endblock %}</title>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/css/jquery-ui.theme.min.css" />
+    <link rel="stylesheet" href="/css/jquery-ui.structure.min.css" />
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+    {# base.tplを呼び出した先でヘッダーを追加する #}
+    {% block header %}
+    {% endblock %}
+</head>
+<body>
+  <div class="navbar navbar-inverse" role="navigation">
+      <div class="container">
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">ナビゲーションの切替</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">フォームページ</a>
+          </div><!-- /.navbar-header -->
+          <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                  <li class="active"><a href="/hatebu">ホーム</a></li>
+              </ul>
+          </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+  </div><!-- /.navbar -->
+{# base.tplを呼び出した先でコンテンツを記述する #}
+<div class="col-xs-8 col-xs-offset-2">
+{% block contents %}
+{% endblock %}
+</div>
+</body>
+</html>

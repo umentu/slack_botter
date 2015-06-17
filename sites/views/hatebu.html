@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{# base.html の title の中に入れるコンテンツ #}
+{% block title %}
+Slackツール
+{% endblock %}
+
+{# ヘッダー情報を追加する場合はここに記述する。 #}
+{% block header %}
+{% endblock%}
+
+
+{# base.html の contents の中に入れるコンテンツ #}
+{% block contents %}
+
+<h1>Slackツール</h1>
+<div>
+    <form action="/hatebu_create" method="get" accept-charset="utf-8" id="create"></form>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>チャンネル</td>
+                <td>
+                    <select name="channel" form="create">
+                        {% for cl in channel_list %}
+                            <option value="{{cl.channel_name}}">{{cl.channel_name}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>キーワード</td>
+                <td><input type="text" name="word" form="create" placeholder="キーワード" /></td>
+            </tr>
+            <tr>
+                <td>取得するブックマーク数</td>
+                <td><input type="number" name="bookmark_count" form="create" placeholder="ブックマーク数" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" name="create" value="作成" form="create" class="btn btn-success" /></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>チャンネル</td>
+                <td>キーワード</td>
+                <td>取得するブックマーク数</td>
+                <td>更新</td>
+                <td>削除</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hl in hatebu_list %}
+            <tr>
+                <td>
+                    {{hl.id}}
+                    <input type="hidden" name="id" form="form{{hl.id}}" value="{{hl.id}}" />
+                </td>
+                <td>
+                    <select name="channel" form="form{{hl.id}}">
+                        {% for cl in channel_list %}
+
+                            {# 登録されているBOTのチャンネルと一致している場合は選択されているようにする。 #}
+
+                            {% if cl.channel_name == hl.channel %}
+                                <option value="{{cl.channel_name}}" selected="selected">{{cl.channel_name}}</option>
+                            {% else %}
+                                <option value="{{cl.channel_name}}">{{cl.channel_name}}</option>
+                            {% endif %}                               
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>
+                    <input type="text" name="word" form="form{{hl.id}}" value="{{hl.word}}" />
+                </td>
+                <td>
+                    <input type="number" name="bookmark_count" form="form{{hl.id}}" value="{{hl.bookmark_count}}" />
+                </td>
+                <td>
+                    <input type="submit" name="updel" form="form{{hl.id}}" value="更新" class="btn btn-info" />
+                </td>
+                <td>
+                    <input type="submit" name="updel" form="form{{hl.id}}" value="削除" class="btn btn-danger" />
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% for hl in hatebu_list %}
+<form action="/hatebu_updel" method="get" id="form{{hl.id}}" accept-charset="utf-8"></form>
+{% endfor %}
+
+{% endblock %}

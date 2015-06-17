@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{# base.html の title の中に入れるコンテンツ #}
+{% block title %}
+HTML5のフォーム紹介ページ
+{% endblock %}
+
+{# ヘッダー情報を追加する場合はここに記述する。 #}
+{% block header %}
+{% endblock%}
+
+
+{# base.html の contents の中に入れるコンテンツ #}
+{% block contents %}
+
+{# 別途、id="form_`キャラクターのID`"を付加した、formの一覧を作成する。 #}
+{% for cl in character_list %}
+<form action="#" method="post" id="form_{{cl.id}}" accept-charset="utf-8"></form>
+{% endfor %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>名前</th>
+            <th>レベル</th>
+        </tr>
+    </thead>
+    <tbody>
+        {# character_list を１つずつ処理する #}
+        {% for cl in character_list %}
+        <tr>
+            {# form="form_`キャラクターのID`" (== "上のformのid") を付加してテーブルを作成する #}
+            <td>
+                {{cl.id}}
+                <input type="hidden" form="form_{{cl.id}}" name="id" value="{{cl.id}}" />
+            </td>
+            <td> <input type="text" form="form_{{cl.id}}" name="name" value="{{cl.name}}" /></td>
+            <td> <input type="text" form="form_{{cl.id}}" name="level" value="{{cl.level}}" /></td>
+            <td> <input type="submit" form="form_{{cl.id}}" value="更新" class="btn btn-info" /></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

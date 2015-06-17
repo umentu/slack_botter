@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{# base.html の title の中に入れるコンテンツ #}
+{% block title %}
+{{ name }} のページ
+{% endblock %}
+
+{# ヘッダー情報を追加する場合はここに記述する。 #}
+{% block header %}
+{% endblock%}
+
+
+{# base.html の contents の中に入れるコンテンツ #}
+{% block contents %}
+
+こんにちは、 {{name}}
+
+<h1>今日のfizzbuzz</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>header</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>データ1</td>
+        </tr>
+        <tr>
+            <td>データ2</td>
+        </tr>
+        <tr>
+            <td>データ3</td>
+        </tr>
+        <tr>
+            <td>データ4</td>
+        </tr>
+
+    </tbody>
+</table>
+
+{% endblock %}
+
+
