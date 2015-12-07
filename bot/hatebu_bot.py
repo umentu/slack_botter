@@ -10,8 +10,8 @@ class Hatebu(object):
     http = None
  
     def __init__(self):
- 
-        self.http = PoolManager()
+        user_agent = {'user-agent': 'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0'}
+        self.http = PoolManager(headers=user_agent)
  
     def get_rss_data(self, word, threshold):
         """
