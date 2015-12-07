@@ -11,7 +11,7 @@ import sqlite3
 sys.path.append( os.path.dirname(__file__) )
 from slack_bot import Slack
 
-from bottle import route, run
+from bottle import route, run, default_app
 from bottle import TEMPLATE_PATH, jinja2_template as template
 from bottle import static_file
 from bottle import get, post, request, response
@@ -177,4 +177,6 @@ def hatebu_updel():
 
 if __name__ == "__main__":
     run(host="localhost", port=8080, debug=True, reloader=True)
+else:
+    application = default_app()
 
