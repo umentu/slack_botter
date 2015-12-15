@@ -107,7 +107,7 @@ def hatebu_create():
     channel = request.query.channel
     word = request.query.word
     bookmark_count = request.query.bookmark_count
-    last_post = '2000-01-01T00:00:00i+09:00'
+    last_post = '2000-01-01T00:00:00+09:00'
 
     # データベースにデータを挿入
     cursor.execute(sql,(channel,word,bookmark_count,last_post))
