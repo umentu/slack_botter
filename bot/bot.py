@@ -58,11 +58,11 @@ if __name__ == "__main__":
                 # slackに投稿する。
                 slack.post_message_to_channel(channel, message)
 
-        # データベースのlast_postを更新する
-        sql = """
-        UPDATE hatebu_list SET last_post = ? WHERE id = ?
-        """
-        cursor.execute(sql, (last_post, idx))
+                # データベースのlast_postを更新する
+                sql = """
+                UPDATE hatebu_list SET last_post = ? WHERE id = ?
+                """
+                cursor.execute(sql, (last_post, idx))
     
     # データベースの変更を更新
     connect.commit()
